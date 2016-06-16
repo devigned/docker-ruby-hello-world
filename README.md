@@ -1,9 +1,10 @@
 # docker-ruby-hello-world
 super simple ruby docker hello world
 
-- `docker build -t ruby-sample`
-- `ID=$(docker run -p 8080:8080 -d ruby-sample)`
-- `open "http://$(docker-machine ip):8080"`
+- `export PORT=8080`
+- `docker build -t ruby-sample .`
+- `ID=$(docker run -e "PORT=$PORT" -p $PORT:$PORT -d ruby-sample)`
+- `open "http://$(docker-machine ip):$PORT"`
 - `docker logs $ID`
 - `docker stop $ID`
 - `docker rm $ID`
