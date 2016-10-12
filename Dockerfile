@@ -1,8 +1,6 @@
 FROM ruby:2.2.0
 RUN mkdir /app
 WORKDIR /app
-ADD Gemfile /app/Gemfile
-ADD Gemfile.lock /app/Gemfile.lock
-RUN find /app -exec chmod 666 {} \; && bundle install
 ADD . /app
+RUN find /app -exec chmod 666 {} -v \; && bundle install
 CMD bundle exec puma config.ru -p $PORT -v
